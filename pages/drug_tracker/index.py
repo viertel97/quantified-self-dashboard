@@ -1,8 +1,7 @@
 import os
-from datetime import datetime
 
 from dash import dcc, html
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 from dash.exceptions import PreventUpdate
 from loguru import logger
 
@@ -49,9 +48,9 @@ def update_intake(diagram_type, occurence_range=None):
 def update_kpi(relayout_data):
     relevant_columns = get_columns()
     if (
-        relayout_data is None
-        or "xaxis.range[0]" not in relayout_data.keys()
-        or "xaxis.range[1]" not in relayout_data.keys()
+            relayout_data is None
+            or "xaxis.range[0]" not in relayout_data.keys()
+            or "xaxis.range[1]" not in relayout_data.keys()
     ):
         return html.Div(
             get_kpi_values(DF, relevant_columns),

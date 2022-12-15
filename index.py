@@ -5,6 +5,7 @@ from dash.dependencies import Input, Output
 from app import app, server
 from pages.book_list import index as book_list
 from pages.drug_tracker import index as drug_tracker
+from pages.meditation import index as meditation
 
 # Connect to your app pages
 from pages.home import index as home
@@ -19,6 +20,7 @@ app.layout = html.Div(
                 dbc.NavItem(dbc.NavLink("Drug Tracker", href="/drug-tracker")),
                 dbc.NavItem(dbc.NavLink("Social Life", href="/social-life")),
                 dbc.NavItem(dbc.NavLink("Book-List", href="/book-list")),
+                dbc.NavItem(dbc.NavLink("Meditation", href="/meditation")),
             ],
             brand="Home",
             brand_href="/",
@@ -38,6 +40,8 @@ def display_page(pathname):
         return social_life.layout
     if pathname == "/book-list":
         return book_list.layout
+    if pathname == "/meditation":
+        return meditation.layout
     else:
         return home.layout
 

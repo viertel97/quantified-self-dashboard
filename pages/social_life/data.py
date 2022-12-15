@@ -8,7 +8,6 @@ from quarter_lib.database import (
     create_monica_server_connection,
 )
 
-from app import cache
 
 logger.add(
     os.path.join(os.path.dirname(os.path.abspath(__file__)) + "/logs/" + os.path.basename(__file__) + ".log"),
@@ -35,7 +34,7 @@ def get_activities_db():
     return df
 
 
-# @cache.memoize()
+@cache.memoize()
 def get_complete_data():
     logger.info("load social life data")
     df = get_activities_db()
@@ -52,7 +51,7 @@ def get_pie_boundries(df):
     return counts.min(), counts.max()
 
 
-# @cache.memoize()
+@cache.memoize()
 def get_occurence_data(df, occurance_range):
     if occurance_range == "Month":
         grouped = df.groupby([df.happened_at.dt.year, df.happened_at.dt.month]).agg([lambda x: list(x), "count"])
