@@ -13,3 +13,4 @@ statsmodels==0.13.2
 nbformat==5.7.0
 plotly-calplot==0.1.13
 quarter_lib==0.0.12
+python-dotenv==1.0.0
