@@ -1,9 +1,10 @@
 import os
+from quarter_lib.akeyless import get_secrets
 
-API_KEY = os.environ["NOTION_TOKEN"]
+NOTION_API_KEY = get_secrets(["notion/token"])
 BASE_URL = "https://api.notion.com/v1/"
 HEADERS = {
-    "Authorization": "Bearer " + API_KEY,
+    "Authorization": "Bearer " + NOTION_API_KEY,
     "Content-Type": "application/json",
     "Notion-Version": "2021-08-16",
 }

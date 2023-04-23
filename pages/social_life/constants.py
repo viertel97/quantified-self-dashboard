@@ -1,3 +1,3 @@
 import os
-
-MONICA_TOKEN = os.environ.get("MONICA_TOKEN")
+from quarter_lib.akeyless import get_secrets
+MONICA_TOKEN = get_secrets(["monica/token"])
