@@ -96,6 +96,7 @@ def get_intake_data(df, relevant_columns):
             name="Alcohol",
             hovertemplate="Gramm: %{customdata[0]:.1f}",
         ),
+        # TODO: Differenzieren zwischen verschiedenen Drogen
         go.Bar(
             x=df["Date"],  # assign x as the dataframe column 'x'
             y=df["Nicotine-Intake"],

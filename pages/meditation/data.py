@@ -4,7 +4,7 @@ from datetime import datetime
 import numpy as np
 import pandas as pd
 from loguru import logger
-from quarter_lib.database import (
+from quarter_lib_old.database import (
     close_server_connection,
     create_server_connection,
 )

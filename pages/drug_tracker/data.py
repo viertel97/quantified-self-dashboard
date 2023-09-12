@@ -44,7 +44,10 @@ def calculate_alcohol_density(row):
 
 def calculate_nicotine_density(row):
     if row:
-        if "Snus Pouch" in row:
+        logger.info(row)
+        if "Snus" in row:
+            return 1
+        if "E-Zigarette" in row:
             return 1
         if row[0] == ">":
             count = 0.5
