@@ -12,8 +12,8 @@ logger.add(
 )
 
 
-APPLICATION_NAME = "QS"
-APPLICATION_PATH = "QS"
+APPLICATION_NAME = "quantified-self-dashboard"
+APPLICATION_PATH = "quantified-self-dashboard"
 
 
 if __name__ == "__main__":

@@ -1,7 +1,6 @@
 requirements_custom.txt
 
 cache-directory
-pages/drug_tracker_personal/**
 *.code-workspace
 
 *.json

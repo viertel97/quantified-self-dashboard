@@ -4,7 +4,7 @@ from dash.dependencies import Input, Output
 
 from app import app, server
 from pages.book_list import index as book_list
-from pages.drug_tracker import index as drug_tracker
+from pages.drug_tracker_personal import index as drug_tracker
 from pages.meditation import index as meditation
 
 # Connect to your app pages
