@@ -17,10 +17,6 @@ stages:
       vmImage: 'ubuntu-latest'
     steps:
     - script: |
-        # Install docker CLI
-        curl -fsSL https://get.docker.com -o get-docker.sh
-        sudo sh get-docker.sh
-  
         # Install buildx
         docker buildx create --use
         docker buildx inspect --bootstrap
