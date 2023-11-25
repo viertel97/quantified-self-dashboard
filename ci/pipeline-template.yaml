@@ -8,25 +8,32 @@ parameters:
   type: string # data type of the parameter; required
 
 stages:
-  steps:
-  - script: |
-      # Install docker CLI
-      curl -fsSL https://get.docker.com -o get-docker.sh
-      sudo sh get-docker.sh
+- stage: Docker
+  displayName: Build and Push Docker Image
+  jobs:
+  - job: Build_Push
+    displayName: Build and Push Dockerimage
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - script: |
+        # Install docker CLI
+        curl -fsSL https://get.docker.com -o get-docker.sh
+        sudo sh get-docker.sh
+  
+        # Install buildx
+        docker buildx create --use
+        docker buildx inspect --bootstrap
+  
+        # Build and push multi-platform Docker image
+        docker buildx build --platform linux/arm64,linux/amd64 -t ghcr.io/viertel97/$(parameters.repository):latest -f Dockerfile .
+        docker buildx stop
+      displayName: 'Build and Push Multi-Platform Docker Image'
 
-      # Install buildx
-      docker buildx create --use
-      docker buildx inspect --bootstrap
-
-      # Build and push multi-platform Docker image
-      docker buildx build --platform linux/arm64,linux/amd64 -t ghcr.io/viertel97/$(parameters.repository):latest -f Dockerfile .
-      docker buildx stop
-    displayName: 'Build and Push Multi-Platform Docker Image'
-
-  - task: Docker@2
-    inputs:
-      containerRegistry: 'GHCR'
-      repository: 'viertel97/$(parameters.repository)'
-      command: 'push'
-      tags: 'latest,$(Build.BuildNumber)'
-    displayName: 'Push Docker Image'
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'GHCR'
+        repository: 'viertel97/$(parameters.repository)'
+        command: 'push'
+        tags: 'latest,$(Build.BuildNumber)'
+      displayName: 'Push Docker Image'
