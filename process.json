@@ -1,0 +1,15 @@
+{
+    "apps": [
+        {
+            "name": "quantified-self-dashboard",
+            "script": "index.py",
+            "cwd": "/home/pi/code/quantified-self-dashboard",
+            "interpreter": "/home/pi/code/quantified-self-dashboard/venv/bin/python",
+            "instances": 1,
+            "exec_mode": "fork",
+            "log_date_format": "YYYY-MM-DD HH:mm Z",
+            "combine_logs": true,
+            "cron_restart": "2 0 * * *"
+        }
+    ]
+}
