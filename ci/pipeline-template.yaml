@@ -16,6 +16,11 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'GHCR'
+        command: 'login'
+      displayName: 'Login'
     - script: |
         # Install buildx
         docker buildx create --use
