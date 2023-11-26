@@ -20,7 +20,7 @@ stages:
       inputs:
         containerRegistry: 'GHCR'
         command: 'login'
-      displayName: 'Login'
+      displayName: 'Login to GHCR'
     - script: |
         # Install buildx
         docker buildx create --use
@@ -30,11 +30,3 @@ stages:
         docker buildx build --push --platform linux/arm64,linux/amd64 -t ghcr.io/viertel97/quantified-self-dashboard:latest -f Dockerfile .
         docker buildx stop
       displayName: 'Build and Push Multi-Platform Docker Image'
-
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'GHCR'
-        repository: 'viertel97/$(parameters.repository)'
-        command: 'push'
-        tags: 'latest,$(Build.BuildNumber)'
-      displayName: 'Push Docker Image'
