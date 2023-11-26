@@ -1,12 +1,18 @@
-FROM python:3.9-buster
-RUN pip install --upgrade pip
+FROM python:3.9-slim-buster
 
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
 COPY . .
+
+COPY requirements.txt .
+COPY requirements_custom.txt .
+
+RUN pip install -r requirements.txt
+RUN pip install -r requirements_custom.txt
+
 EXPOSE 8060
 ENV IS_CONTAINER=True
 
+CMD ["python", "index.py"]
 
-CMD ["python3", "./index.py"]
+
+
+
