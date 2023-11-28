@@ -56,10 +56,9 @@ ingress:
         - path: /
           pathType: Prefix
   tls:
-  - hosts:
-    - quantified-self-dashboard.viertel-it.de
-    secretName: quantified-self-dashboard-tls
-
+    - secretName: tls.quantified-self-dashboard
+      hosts:
+        - quantified-self-dashboard.viertel-it.de
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
