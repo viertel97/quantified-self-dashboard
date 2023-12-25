@@ -79,9 +79,6 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-nodeSelector:
-  kubernetes.io/hostname: "ubuntu-server"
-
 tolerations: []
 
 affinity: {}
