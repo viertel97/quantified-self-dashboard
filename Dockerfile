@@ -1,5 +1,5 @@
 FROM python:3.9-slim-buster
-ARG pat
+ARG PAT
 COPY . .
 
 COPY requirements.txt .
