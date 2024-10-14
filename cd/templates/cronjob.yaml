@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: restart-quantified-self-dashboard
+spec:
+  schedule: "0 4 * * *"  # Run daily at 3:00 AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                      - key: kubernetes.io/hostname
+                        operator: In
+                        values:
+                          - "raspberrypi5"
+          containers:
+            - name: kubectl
+              image: bitnami/kubectl:latest  # Use the kubectl image
+              command:
+                - /bin/sh
+                - "-c"
+                - |
+                  kubectl rollout restart deployment quantified-self-dashboard -n custom
+          restartPolicy: OnFailure
+          serviceAccountName: quantified-self-dashboard-sa  # Use the service account with required permissions
